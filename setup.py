@@ -1,4 +1,4 @@
-SETUP = """import os
+import os
 import sys
 
 from setuptools import find_packages, setup
@@ -9,12 +9,12 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 
 def readme():
-    with open(os.path.join(HERE, 'README.rst')) as f:
+    with open(os.path.join(HERE, 'README.md')) as f:
         return f.read()
 
 
 def get_version():
-    with open(os.path.join(HERE, '{{PROJECT_MAIN_PACKAGE}}/__init__.py'), 'r') as f:
+    with open(os.path.join(HERE, 'pygenerator/__init__.py'), 'r') as f:
         content = ''.join(f.readlines())
     env = {}
     if PYTHON3:
@@ -26,9 +26,9 @@ def get_version():
 
 
 setup(
-    name='{{PROJECT_NAME}}',
+    name='pygenerator',
     version=get_version(),
-    description='{{PROJECT_DESCRIPTION}}',
+    description='',
     long_description=readme(),
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -37,20 +37,23 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
     ],
-    keywords='{{PROJECT_KEYWORDS}}',
-    url='{{PROJECT_URL}}',
-    author='{{PROJECT_AUTHOR}}',
-    author_email='{{PROJECT_AUTHOR_EMAIL}}',
-    license='{{PROJECT_LICENSE}}',
+    keywords='',
+    url='',
+    author='rgs',
+    author_email='rgs@itevenworks.net',
+    license='apache',
     packages=find_packages(),
-    test_suite='{{PROJECT_MAIN_PACKAGE}}.tests',
-    scripts={{PROJECT_SCRIPTS}},
-    install_requires={{PROJECT_REQUIRES}},
-    tests_require={{PROJECT_TESTS_REQUIRES}},
+    test_suite='pygenerator.tests',
+    scripts=[
+        'bin/pygenerator',
+    ],
+    install_requires=[],
+    tests_require=[
+        'nose'
+    ],
     extras_require={
-        'test': {{PROJECT_EXTRAS_REQUIRES}},
+        'test': [],
     },
     include_package_data=True,
     zip_safe=False
 )
-"""

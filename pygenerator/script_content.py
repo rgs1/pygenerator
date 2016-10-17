@@ -1,6 +1,5 @@
 
-SCRIPT = """
-#!/usr/bin/env python
+SCRIPT = """#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import os

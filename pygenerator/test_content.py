@@ -1,7 +1,6 @@
 
 
-TEST_BASIC = """
-# -*- coding: utf-8 -*-
+TEST_BASIC = """# -*- coding: utf-8 -*-
 
 \"\"\" basic test cases \"\"\"
 

@@ -1,6 +1,5 @@
 
-CONTRIBUTING = """
-Development
+CONTRIBUTING = """Development
 ===========
 
 Setup

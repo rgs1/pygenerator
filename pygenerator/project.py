@@ -74,6 +74,7 @@ def create_dir(path, overwrite, verbose):
             if verbose:
                 print('Creating dir %s' % path)
             os.makedirs(path)
+            return
         except OSError:
             raise ProjectError('Failed to create %s' % path)
 
@@ -89,6 +90,7 @@ def create_file(path, content, overwrite, verbose):
                 print('Creating file %s' % path)
             with open(path, 'w') as fh:
                 fh.write(content)
+            return
         except IOError:
             raise ProjectError('Failed to create %s' % path)
 
@@ -131,6 +133,8 @@ class Project(object):
             'PROJECT_AUTHOR': config.author,
             'PROJECT_AUTHOR_EMAIL': config.author_email,
             'PROJECT_LICENSE': config.license,
+            # FIXME: is this the right way?
+            'PROJECT_MAIN_PACKAGE': config.packages[0],
             'PROJECT_SCRIPTS': str([join('bin/', script) for script in config.scripts]),
             'PROJECT_REQUIRES': str(config.requires),
             'PROJECT_TESTS_REQUIRES': str(config.tests_requires),
@@ -181,12 +185,22 @@ class Project(object):
             create_file(path, APACHE, config.overwrite, verbose)
 
         if config.include_readme:
+            # TODO: project usage & tldr
+            varz = {
+                'PROJECT_NAME': config.project_name,
+            }
+            content = render_content(README, varz)
             path = join(project_path, 'README.rst')
-            create_file(path, README, config.overwrite, verbose)
+            create_file(path, content, config.overwrite, verbose)
 
         if config.include_contributing:
+            # FIXME: which one is the main pkg?
+            varz = {
+                'PACKAGE_NAME': config.packages[0],
+            }
+            content = render_content(CONTRIBUTING, varz)
             path = join(project_path, 'CONTRIBUTING')
-            create_file(path, CONTRIBUTING, config.overwrite, verbose)
+            create_file(path, content, config.overwrite, verbose)
 
         if config.include_changes:
             path = join(project_path, 'CHANGES')

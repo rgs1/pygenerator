@@ -1,6 +1,5 @@
 
-README = """
-{{PROJECT_NAME}}
+README = """{{PROJECT_NAME}}
 ========
 
 **Table of Contents**
