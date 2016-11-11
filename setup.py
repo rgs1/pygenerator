@@ -27,18 +27,18 @@ def get_version():
 
 setup(
     name='pygenerator',
+    description='Utilities to generate Python projects',
     version=get_version(),
-    description='',
     long_description=readme(),
+    platforms=['any'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
     ],
     keywords='',
-    url='',
+    url='https://github.com/rgs1/pygenerator',
     author='rgs',
     author_email='rgs@itevenworks.net',
     license='apache',
